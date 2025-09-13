@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         m_Rotation = Quaternion.LookRotation(desiredForward);
     }
 
-    void onAnimatorMove()
+    void OnAnimatorMove()
     {
         // Move the player to the position based on animation movement
         m_Rigidbody.MovePosition(m_Rigidbody.position + m_Movement * m_Animator.deltaPosition.magnitude);
