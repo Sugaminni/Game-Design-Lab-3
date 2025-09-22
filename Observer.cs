@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Observer : MonoBehaviour
 {
+    // Variables to hold references to the player and the game ending script
     public Transform player;
     public GameEnding gameEnding;
-
     bool m_IsPlayerInRange;
 
-    void OnTriggerEnter (Collider other)
+    // If the player enters the trigger zone, sets the flag to true
+    void OnTriggerEnter(Collider other)
     {
         if (other.transform == player)
         {
@@ -17,7 +18,8 @@ public class Observer : MonoBehaviour
         }
     }
 
-    void OnTriggerExit (Collider other)
+    // If the player leaves the trigger zone, sets the flag to false
+    void OnTriggerExit(Collider other)
     {
         if (other.transform == player)
         {
@@ -25,7 +27,8 @@ public class Observer : MonoBehaviour
         }
     }
 
-    void Update ()
+    // If the player is in range, check if the enemy can see the player
+    void Update()
     {
         if (m_IsPlayerInRange)
         {
@@ -33,7 +36,7 @@ public class Observer : MonoBehaviour
             Ray ray = new Ray(transform.position, direction);
             RaycastHit raycastHit;
 
-            if(Physics.Raycast(ray, out raycastHit))
+            if (Physics.Raycast(ray, out raycastHit))
             {
                 if (raycastHit.collider.transform == player)
                 {
